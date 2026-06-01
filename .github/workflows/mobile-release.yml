@@ -38,7 +38,7 @@ jobs:
     permissions: write-all
     steps:
       - name: Download Android Build
-        uses: actions/download-artifact@main
+        uses: actions/download-artifact@4
         with:
            name: androidBuild
            path: /home/runner
@@ -47,7 +47,7 @@ jobs:
         run: mv /home/runner/${{ env.PROJECT_NAME }}-release.apk /home/runner/${{ env.PROJECT_NAME }}-Android.apk
 
       - name: Download iOS Build
-        uses: actions/download-artifact@main
+        uses: actions/download-artifact@4
         with:
            name: iOSBuild
            path: ${{ github.workspace }}
@@ -56,7 +56,7 @@ jobs:
         run: zip -r /home/runner/${{ env.PROJECT_NAME }}-iOS.zip ${{ github.workspace }}/${{ env.PROJECT_NAME }}.ipa
 
       - name: Publish The Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           name: "0.6.3"
           tag_name: "0.6.3"
